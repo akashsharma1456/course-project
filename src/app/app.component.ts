@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   loadedFeature = 'recipe';
 
+  // tslint:disable-next-line:typedef
   onNavigate(feature: string) {
     this.loadedFeature = feature;
   }
