@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Ingredient} from '../../shared/intgredient.model';
 import {ShopingListService} from '../shoping-list.service';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-shoping-edit',
   templateUrl: './shoping-edit.component.html',
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ShopingEditComponent implements OnInit {
   @ViewChild('f', { static: false }) slForm!: NgForm;
-  subscription: Subscription;
+  subscription!: Subscription;
   editMode = false;
   editedItemIndex!: number;
   editedItem!: Ingredient;
@@ -52,7 +52,8 @@ export class ShopingEditComponent implements OnInit {
     this.slService.deleteIngredient(this.editedItemIndex);
     this.onClear();
   }
-  ngOnDestroy() {
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 

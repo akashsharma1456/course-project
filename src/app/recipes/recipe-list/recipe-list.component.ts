@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class RecipeListComponent implements OnInit {
 
   recipes!: Recipe[];
-  subscription: Subscription;
+  subscription!: Subscription;
   constructor(private recipeService: RecipeService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -31,6 +31,7 @@ export class RecipeListComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

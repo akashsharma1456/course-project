@@ -5,7 +5,7 @@ import {ShopingListService} from '../shoping-list/shoping-list.service';
 import {Subject} from 'rxjs';
 @Injectable()
 export class RecipeService {
-  recipeSelected = new Subject<Recipe[]>();
+  recipesChanged = new Subject<Recipe[]>();
   private recipes: Recipe[] = [
     new Recipe(
       'Kheer',
@@ -29,6 +29,7 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice();
   }
+  // tslint:disable-next-line:typedef
   getRecipe(index: number) {
     return this.recipes[index];
   }
@@ -39,11 +40,11 @@ export class RecipeService {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.recipes.slice());
   }
-  updateRecipe(index: number, newRecipe: Recipe) {
+  updateRecipe(index: number, newRecipe: Recipe): void {
     this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
   }
-  deleteRecipe(index: number) {
+  deleteRecipe(index: number): void {
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
   }
