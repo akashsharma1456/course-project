@@ -6,26 +6,31 @@ import {Subject} from 'rxjs';
 @Injectable()
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Kheer',
-      'Sweet Desert',
-      'https://c.ndtvimg.com/2018-10/6n7i40g8_sharad-purnima-2018-kheer-recipe-and-benefits_625x300_23_October_18.jpg',
-      [
-        new Ingredient('Milk', 1),
-        new Ingredient('Sugar', 1)
-      ]),
-    new Recipe(
-      'French Fries',
-      'Snacks',
-      'https://www.thespruceeats.com/thmb/IHKuXcx3uUI1IWkM_cnnQdFH-zQ=/3485x2323/filters:fill(auto,1)/how-to-make-homemade-french-fries-2215971-hero-01-02f62a016f3e4aa4b41d0c27539885c3.jpg',
-      [
-        new Ingredient('Potato', 10),
-        new Ingredient('Butter', 3)
-      ])
-  ];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Kheer',
+  //     'Sweet Desert',
+  //     'https://c.ndtvimg.com/2018-10/6n7i40g8_sharad-purnima-2018-kheer-recipe-and-benefits_625x300_23_October_18.jpg',
+  //     [
+  //       new Ingredient('Milk', 1),
+  //       new Ingredient('Sugar', 1)
+  //     ]),
+  //   new Recipe(
+  //     'French Fries',
+  //     'Snacks',
+  //     'https://www.thespruceeats.com/thmb/IHKuXcx3uUI1IWkM_cnnQdFH-zQ=/3485x2323/filters:fill(auto,1)/how-to-make-homemade-french-fries-2215971-hero-01-02f62a016f3e4aa4b41d0c27539885c3.jpg',
+  //     [
+  //       new Ingredient('Potato', 10),
+  //       new Ingredient('Butter', 3)
+  //     ])
+  // ];
+  private recipes: Recipe[] = [];
   constructor(private  slService: ShopingListService) {}
   // tslint:disable-next-line:typedef
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
   getRecipes() {
     return this.recipes.slice();
   }
