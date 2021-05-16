@@ -1,3 +1,10 @@
+Name : Akash
+Student Id : 2010138
+Github Link : "https://github.com/akashsharma1456/course-project"
+
+
+
+
 # CourseProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
